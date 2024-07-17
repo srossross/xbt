@@ -27,17 +27,9 @@ jobs:
       - name: Lint with flake8 and black
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          flake8 scripts/
-          black scripts/ --check
+          flake8 xbt/
+          black xbt/ --check
       # - name: Test
       #   run: |
       #     # stop the build if there are Python syntax errors or undefined names
       #     py.test scripts/ -v
-
-      - name: sql fluff dbt
-        env:
-          GCS_KEY_ID: "123"
-          GCS_SECRET: "456"
-          TRANSFORM_GCS_PATH_INPUT: "./fake-input"
-        run: |
-          sqlfluff lint ./models
