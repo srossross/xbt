@@ -1,0 +1,24 @@
+name: Delete Neon Branches
+
+on: delete
+
+jobs:
+  delete-neon-branches:
+    if: github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Install dependencies
+        run: |
+          npm ci
+      - name: Delete Neon branches
+        id: neon
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          NEON_PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
+          BRANCH_NAME: ${{ github.event.ref }}
+        run: npm run neon:delete-branch

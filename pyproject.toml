@@ -1,0 +1,23 @@
+[project]
+name = "xbt"
+version = "0.3.0"
+authors = [{ name = "Sean Ross-Ross", email = "srossross@gmail.com" }]
+description = "X Build Tool"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[project.urls]
+Homepage = "https://github.com/srossross/xbt"
+Issues = "https://github.com/srossross/xbt/issues"
+
+
+[project.scripts]
+xbt = "xbt.cli:main"
